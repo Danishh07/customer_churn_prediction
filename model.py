@@ -184,6 +184,11 @@ class ChurnPredictor:
             
             print(f"\nGenerating SHAP explanations for XGBoost...")
             
+            # Ensure images directory exists
+            import os
+            if not os.path.exists('images'):
+                os.makedirs('images')
+            
             # Use a subset of test data for SHAP (for performance)
             X_sample = self.X_test.sample(n=min(sample_size, len(self.X_test)), random_state=42)
             
@@ -196,7 +201,7 @@ class ChurnPredictor:
             shap.summary_plot(shap_values, X_sample, feature_names=self.feature_names, show=False)
             plt.title('SHAP Summary Plot - Feature Importance for Churn Prediction')
             plt.tight_layout()
-            plt.savefig('shap_summary_plot.png', dpi=300, bbox_inches='tight')
+            plt.savefig('images/shap_summary_plot.png', dpi=300, bbox_inches='tight')
             plt.show()
             
             # Bar plot for a single prediction
@@ -204,10 +209,10 @@ class ChurnPredictor:
             shap.plots.bar(shap_values[0], feature_names=self.feature_names, show=False)
             plt.title('SHAP Bar Plot - Single Prediction Explanation')
             plt.tight_layout()
-            plt.savefig('shap_bar_plot.png', dpi=300, bbox_inches='tight')
+            plt.savefig('images/shap_bar_plot.png', dpi=300, bbox_inches='tight')
             plt.show()
             
-            print("SHAP plots saved successfully!")
+            print("SHAP plots saved successfully in images/ directory!")
             
             return explainer, shap_values
             

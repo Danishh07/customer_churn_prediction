@@ -460,13 +460,13 @@ def display_model_insights():
         """)
     
     # Display SHAP plots if available
-    if os.path.exists('shap_summary_plot.png'):
+    if os.path.exists('images/shap_summary_plot.png'):
         st.subheader("🔍 Feature Importance (SHAP Analysis)")
-        st.image('shap_summary_plot.png', caption="SHAP Summary Plot - How each feature impacts churn prediction")
+        st.image('images/shap_summary_plot.png', caption="SHAP Summary Plot - How each feature impacts churn prediction")
     
-    if os.path.exists('xgboost_feature_importance.png'):
+    if os.path.exists('images/xgboost_feature_importance.png'):
         st.subheader("📊 XGBoost Feature Importance")
-        st.image('xgboost_feature_importance.png', caption="Top 20 most important features for churn prediction")
+        st.image('images/xgboost_feature_importance.png', caption="Top 20 most important features for churn prediction")
 
 def main():
     """Main Streamlit app function."""

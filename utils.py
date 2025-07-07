@@ -15,6 +15,13 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 import warnings
 warnings.filterwarnings('ignore')
 
+def ensure_images_directory():
+    """Ensure images directory exists for saving plots."""
+    import os
+    if not os.path.exists('images'):
+        os.makedirs('images')
+        print("Created 'images' directory for storing visualizations.")
+
 def load_and_explore_data(file_path):
     """
     Load the dataset and perform initial exploration.
@@ -94,6 +101,9 @@ def perform_eda(df):
         df (pd.DataFrame): Cleaned dataset
     """
     try:
+        # Ensure images directory exists
+        ensure_images_directory()
+        
         # Set up the plotting style
         plt.style.use('default')
         sns.set_palette("husl")
@@ -119,7 +129,7 @@ def perform_eda(df):
         axes[1,1].set_title('Total Charges by Churn')
         
         plt.tight_layout()
-        plt.savefig('eda_plots.png', dpi=300, bbox_inches='tight')
+        plt.savefig('images/eda_plots.png', dpi=300, bbox_inches='tight')
         plt.show()
         
         # 2. Categorical variables analysis
@@ -134,7 +144,7 @@ def perform_eda(df):
                 axes[i].legend(['No Churn', 'Churn'])
         
         plt.tight_layout()
-        plt.savefig('categorical_analysis.png', dpi=300, bbox_inches='tight')
+        plt.savefig('images/categorical_analysis.png', dpi=300, bbox_inches='tight')
         plt.show()
         
         # 3. Correlation heatmap for numerical features
@@ -146,10 +156,10 @@ def perform_eda(df):
                        square=True, linewidths=0.5)
             plt.title('Correlation Heatmap of Numerical Features')
             plt.tight_layout()
-            plt.savefig('correlation_heatmap.png', dpi=300, bbox_inches='tight')
+            plt.savefig('images/correlation_heatmap.png', dpi=300, bbox_inches='tight')
             plt.show()
         
-        print("EDA completed successfully! Plots saved as PNG files.")
+        print("EDA completed successfully! Plots saved as PNG files in images/ directory.")
         
     except Exception as e:
         print(f"Error during EDA: {e}")
@@ -262,6 +272,9 @@ def plot_roc_curves(models_results, y_test):
         y_test: True test labels
     """
     try:
+        # Ensure images directory exists
+        ensure_images_directory()
+        
         plt.figure(figsize=(10, 8))
         
         for model_name, results in models_results.items():
@@ -277,10 +290,10 @@ def plot_roc_curves(models_results, y_test):
         plt.legend()
         plt.grid(True, alpha=0.3)
         plt.tight_layout()
-        plt.savefig('roc_curves.png', dpi=300, bbox_inches='tight')
+        plt.savefig('images/roc_curves.png', dpi=300, bbox_inches='tight')
         plt.show()
         
-        print("ROC curves plot saved as 'roc_curves.png'")
+        print("ROC curves plot saved as 'images/roc_curves.png'")
         
     except Exception as e:
         print(f"Error plotting ROC curves: {e}")
@@ -295,6 +308,9 @@ def create_feature_importance_plot(model, feature_names, model_name="Model"):
         model_name (str): Name of the model
     """
     try:
+        # Ensure images directory exists
+        ensure_images_directory()
+        
         if hasattr(model, 'feature_importances_'):
             importance_df = pd.DataFrame({
                 'feature': feature_names,
@@ -306,10 +322,10 @@ def create_feature_importance_plot(model, feature_names, model_name="Model"):
             plt.title(f'Top 20 Feature Importances - {model_name}')
             plt.xlabel('Importance')
             plt.tight_layout()
-            plt.savefig(f'{model_name.lower()}_feature_importance.png', dpi=300, bbox_inches='tight')
+            plt.savefig(f'images/{model_name.lower().replace(" ", "_")}_feature_importance.png', dpi=300, bbox_inches='tight')
             plt.show()
             
-            print(f"Feature importance plot saved for {model_name}")
+            print(f"Feature importance plot saved for {model_name} in images/ directory")
             
         else:
             print(f"Model {model_name} does not have feature_importances_ attribute")

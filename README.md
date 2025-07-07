@@ -43,12 +43,13 @@ Customer Churn Prediction/
 │   ├── xgboost_model.pkl
 │   └── model_metadata.pkl
 │
-└── Generated Visualizations:
+└── images/                     # Generated visualizations
     ├── eda_plots.png
     ├── categorical_analysis.png
     ├── correlation_heatmap.png
     ├── roc_curves.png
     ├── shap_summary_plot.png
+    ├── shap_bar_plot.png
     └── *_feature_importance.png
 ```
 
@@ -196,7 +197,6 @@ The Streamlit app is ready for deployment on platforms like:
 - Google Cloud Platform
 - Azure
 
-## 📝 Code Quality
 
 ## 🎯 Key Business Insights
 
@@ -213,28 +213,6 @@ The Streamlit app is ready for deployment on platforms like:
 - **Contract Optimization**: Incentivize longer-term contracts
 - **Payment Methods**: Encourage automatic payment methods
 - **Service Quality**: Focus on customer satisfaction metrics
-
-## 🚀 Deployment Options
-
-### 1. Streamlit Cloud (Recommended)
-- Fork/upload to GitHub
-- Connect Streamlit Cloud to your repository
-- Automatic deployment with git push
-
-### 2. Heroku
-- Create Procfile: `web: streamlit run app.py --server.port=$PORT`
-- Deploy via Heroku CLI or GitHub integration
-
-### 3. AWS/Google Cloud/Azure
-- Use container services (Docker)
-- Deploy with cloud run or app services
-
-The project follows best practices:
-- **Modular Design**: Separate files for different functionalities
-- **Error Handling**: Comprehensive exception handling
-- **Documentation**: Detailed comments and docstrings
-- **Type Safety**: Input validation and type checking
-- **Clean Code**: PEP 8 compliant formatting
 
 ## 🙏 Acknowledgments
 
