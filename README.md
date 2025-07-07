@@ -6,6 +6,10 @@ A comprehensive machine learning project that predicts customer churn using the 
 
 Customer churn prediction helps businesses identify customers who are likely to stop using their services. This project implements multiple machine learning models to predict churn with high accuracy and provides actionable insights for customer retention.
 
+## 🌐 Live Demo
+
+🔗 **Try the deployed app**: [https://customer-churn-system.streamlit.app/](https://customer-churn-system.streamlit.app/)
+
 ## ✅ Key Features
 
 - **🤖 Machine Learning Models**: Logistic Regression, Random Forest, and XGBoost
